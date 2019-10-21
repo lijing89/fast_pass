@@ -109,15 +109,15 @@ openDrow(){
       }
       },),
     drawerScrimColor: Colors.transparent,
-    backgroundColor: Colors.transparent,
+    backgroundColor: Colors.white,
     key: _scaffoldkey,
       appBar: myappbar(context, false, false,sckey: _scaffoldkey,leaveLogIn: leaveLogIn,image: imgUrl,menuIcon: claseIcon),
       body:  Column(
         children: <Widget>[
           Container(
-          height: ScreenUtil.getInstance().setHeight(202),
+          height: 120,
           width: double.infinity,
-          color: Colors.white,
+          color: Color(0xFFF5F5F5),
           child: TabBar(
               
               controller: _controller,
@@ -135,7 +135,7 @@ openDrow(){
                 return Padding(
                   padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                   child: Text(tab,
-                style: TextStyle(fontSize: ScreenUtil.getInstance().setSp(36)),
+                style: TextStyle(fontSize: 18),
                 ),
                 );
                   
@@ -144,7 +144,7 @@ openDrow(){
               ),
         ),
         Container(
-         color: Colors.black26,
+         color: Color(0xFFCBCBCB),
          height: 1,
         ),
         Flexible(

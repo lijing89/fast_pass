@@ -47,14 +47,29 @@ class _GoingStarehousePageState extends State<GoingStarehousePage>
       switch (response.errCode) {
         
         case 0:
-          showToast('订单支付成功');
+          Fluttertoast.showToast(msg:'订单支付成功',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
           Application.router.navigateTo(context, Routes.home);
           break;
         case -2:
-          showToast('用户中途取消');
+          Fluttertoast.showToast(msg:'用户中途取消',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
           break;
         default:
-          showToast('支付失败');
+          Fluttertoast.showToast(msg:'支付失败',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
           break;
       }
     });
@@ -69,7 +84,13 @@ class _GoingStarehousePageState extends State<GoingStarehousePage>
     ApiConfig().getAccount().then((onValue){
        if(onValue == null){return;}
        if(onValue['rspCode'] != '0000'){
-          showToast(onValue['rspDesc'],
+          Fluttertoast.showToast(msg:onValue['rspDesc'],
+          toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0
           );
           return;
        }
@@ -94,7 +115,12 @@ class _GoingStarehousePageState extends State<GoingStarehousePage>
   }
   void _listenPay(AlipayResp resp) {
     String content = 'pay: ${resp.resultStatus} - ${resp.result}';
-    showToast(content);
+    Fluttertoast.showToast(msg:content,toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
   }
   @override
   void deactivate() {
@@ -309,12 +335,22 @@ leaveLogIn(BuildContext context){
                       GestureDetector(
                         onTap: (){
                           if(shdzMap.length == 0){
-                            showToast('先填写收货地址');
+                            Fluttertoast.showToast(msg:'先填写收货地址',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
                             return;
                           }
                           ApiConfig().wXPayMoney(widget.number).then((onValue){
                             if (onValue['rspCode'] != '0000') {
-                              showToast(onValue['rspDesc']);
+                              Fluttertoast.showToast(msg:onValue['rspDesc'],toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
                               return;
                             }
                             //微信支付

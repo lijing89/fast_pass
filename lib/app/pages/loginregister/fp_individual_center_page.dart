@@ -93,7 +93,7 @@ leaveLogIn(BuildContext context){
           child: Column(
         children: <Widget>[
           Container(
-          height: ScreenUtil.getInstance().setWidth(164),
+          height: ScreenUtil.getInstance().setWidth(144.0),
           width: double.infinity,
           color: AppStyle.colorBackground,
           child: Container(
@@ -110,15 +110,15 @@ leaveLogIn(BuildContext context){
                   child: Column(
                     children: <Widget>[
                       Container(
-                        padding: EdgeInsets.all(14),
+                        padding: EdgeInsets.only(left: 8  ,right: 8 ,top: ScreenUtil.getInstance().setWidth(28.0),bottom: 8),
                         child: Image(
-                          height:  14,
-                          width:  14,
+                          height:  ScreenUtil.getInstance().setWidth(30.0),
+                          width:  ScreenUtil.getInstance().setWidth(30.0),
                           image:AssetImage(AssetUtil.image(tab['image'])),
                         ),
                       ),
                       Text(tab['name'],
-                style: TextStyle(fontSize: 13),
+                style: TextStyle(fontSize: ScreenUtil.getInstance().setSp(23.0)),
                 maxLines: 1,
                 ),
                 

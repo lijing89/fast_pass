@@ -53,7 +53,12 @@ class _FPSellSelectSizePageState extends State<FPSellSelectSizePage> {
   }
   _onTapNextPage(BuildContext context){
     if(_selectSize == ''){
-      showToast('请选择尺码');
+      Fluttertoast.showToast(msg:'请选择尺码',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
       return;
     }
     UserInfoCache().setMapInfo(key: UserInfoCache.sellInfo, map: {

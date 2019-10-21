@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ffi';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fast_pass/app/resources/app_style.dart';
 import 'package:fast_pass/app/utils/application.dart';
@@ -201,6 +202,12 @@ class _LoginFromDemoState extends State<LoginFromDemo> {
 
     bool _openVerb = false;
     int _buyIndex = 1;
+
+     double a = 0.5;
+    Color c = AppStyle.colorPrimary;
+    double d = 0.5;
+    Color e = AppStyle.colorPrimary;
+
     void _login(){
 
         showDialog<Null>(
@@ -227,7 +234,13 @@ class _LoginFromDemoState extends State<LoginFromDemo> {
                     print(map);
                     }).catchError((error) {});
                    
-                  showToast('登录成功');
+                  Fluttertoast.showToast(msg:'登录成功',
+                  toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
                   Timer(Duration(seconds: 1),(){
                     Navigator.pop(context);
                   });
@@ -235,7 +248,12 @@ class _LoginFromDemoState extends State<LoginFromDemo> {
                 return;
             }else{
               //弹窗
-                showToast(response['rspDesc']
+                Fluttertoast.showToast(msg:response['rspDesc'], toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0
                 );
             }
           });
@@ -256,7 +274,12 @@ class _LoginFromDemoState extends State<LoginFromDemo> {
                   jpush.setAlias(onValue['userNo']).then((map) {
                     print(map);
                     }).catchError((error) {});
-                  showToast('登录成功');
+                  Fluttertoast.showToast(msg:'登录成功', toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
                 Timer(Duration(seconds: 2),(){
                     Navigator.pop(context);
                   });
@@ -265,7 +288,12 @@ class _LoginFromDemoState extends State<LoginFromDemo> {
                 return;
             }else{
               //弹窗
-              showToast(response['rspDesc']);
+              Fluttertoast.showToast(msg:response['rspDesc'], toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
             }
           });
         }
@@ -343,12 +371,22 @@ class _LoginFromDemoState extends State<LoginFromDemo> {
             loginFormKey.currentState.save();
             loginFormKey.currentState.validate();
             if(imageyanzhengma.length == 0){
-              showToast("需输入图形验证码");
+              Fluttertoast.showToast(msg:"需输入图形验证码", toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
               getImageYz();
               return false;
             }else if(imgCode != imageyanzhengma){
               //弹窗
-              showToast("图形验证码不正确,请重新输入");
+              Fluttertoast.showToast(msg:"图形验证码不正确,请重新输入", toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
               getImageYz();
               return false;
             }
@@ -372,14 +410,25 @@ class _LoginFromDemoState extends State<LoginFromDemo> {
             ApiConfig().sendMessage('2', phoneNumber).then((response){
               Navigator.pop(context);
               if(response['rspCode'] == '0000'){
-                    showToast(
-                        '发送成功',
+                    Fluttertoast.showToast(
+                        msg:'发送成功',
+                         toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0
                     );
                     reqSn = response['reqSn'];
                     return true;
                 }else{
-                  showToast(
-                         response['rspDesc']);
+                  Fluttertoast.showToast(
+                        msg:response['rspDesc'], toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
                     return false;
                 }
             });
@@ -408,7 +457,13 @@ class _LoginFromDemoState extends State<LoginFromDemo> {
     ApiConfig().obtainImage(2).then((onValue){
       print(onValue);
       if(onValue['rspCode'].toString() != '0000'){
-        showToast( onValue['rspDesc']
+        Fluttertoast.showToast( msg:onValue['rspDesc'],
+         toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0
       );
 
       return;
@@ -557,6 +612,7 @@ class _LoginFromDemoState extends State<LoginFromDemo> {
                         children: <Widget>[
                           SizedBox( height: ScreenUtil.getInstance().setHeight(100.0),),
                           TextFormField(
+                             cursorColor: AppStyle.colorPrimary,
                         initialValue: phoneNumber,
                         keyboardType: _openVerb?TextInputType.phone:TextInputType.text,
                         decoration: InputDecoration(
@@ -587,6 +643,7 @@ class _LoginFromDemoState extends State<LoginFromDemo> {
                         alignment: Alignment(0 , 0),
                         children: <Widget>[
                             TextFormField(
+                              cursorColor: AppStyle.colorPrimary,
                               initialValue: imageyanzhengma,
                                 obscureText: false,
                                 decoration: InputDecoration(
@@ -637,6 +694,7 @@ class _LoginFromDemoState extends State<LoginFromDemo> {
                         alignment: Alignment(0 , 0),
                         children: <Widget>[
                             TextFormField(
+                              cursorColor: AppStyle.colorPrimary,
                                 initialValue: messageCode,
                                 obscureText: false,
                                 decoration: InputDecoration(
@@ -668,6 +726,7 @@ class _LoginFromDemoState extends State<LoginFromDemo> {
                         ],
                     ):
                     TextFormField(
+                      cursorColor: AppStyle.colorPrimary,
                         obscureText: true,
                         initialValue: password,
                         decoration: InputDecoration(
@@ -697,18 +756,34 @@ class _LoginFromDemoState extends State<LoginFromDemo> {
                       ),
                       Expanded(flex: 2,
                       child: Container(
-                        height: ScreenUtil.getInstance().setWidth(74),
+                          height: ScreenUtil.getInstance().setWidth(74),
                         width: ScreenUtil.getInstance().setWidth(168),
-                        child: GestureDetector(
-                          child: Container(
+                        child: MaterialButton(
+                              shape: RoundedRectangleBorder(
+                                            side: BorderSide(
+                                              width: a,
+                                              color: c,
+                                              style: BorderStyle.solid,
+                                            ),
+                                            borderRadius: BorderRadius.all(Radius.circular(37)),
+                              ),
+                        onPressed: (){
+                          Navigator.pop(context);
+                        },
+                        onHighlightChanged: (onPressed){
+                          print(onPressed);
+                          setState(() {
+                            if(onPressed){
+                              a= 2;
+                            c = Colors.red;
+                            }else{
+                               a = 0.5;
+                               c = AppStyle.colorPrimary;
+                            }
+                          });
+                        },
+                       child: Container(
                             alignment: Alignment.center,
-                             decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(ScreenUtil.getInstance().setWidth(74.0)),
-                      border: Border.all(
-                        color: AppStyle.colorGreyText,
-                        width: 0.5,
-                      )
-                  ),
                             child: Text(
                               '取消',
                               style: TextStyle(
@@ -717,29 +792,43 @@ class _LoginFromDemoState extends State<LoginFromDemo> {
                               ),
                             ),
 
-                          ),// 下部的影子，该值越大，影子越清楚，为0时，不会有影子，和RaisedButton是一样的
-                          onTap: (){
-                            Navigator.pop(context);
-                          },
-                        )
+                          ),// 下部的影子
+                      )
                       ),
                       ),
                       SizedBox(width: ScreenUtil.getInstance().setHeight(30)),
                       Expanded(
                         flex: 2,
-                        child: GestureDetector(
-                            child: Container(
-                              height: ScreenUtil.getInstance().setWidth(74),
+                        child: Container(
+                        child: MaterialButton(
+                          color: Colors.red,
+                          shape: RoundedRectangleBorder(
+                            
+               side: BorderSide(
+                 width: d,
+                 color: e ,
+                 style: BorderStyle.solid,
+               ),
+               borderRadius: BorderRadius.all(Radius.circular(37)),
+             ),
+
+clipBehavior: Clip.antiAliasWithSaveLayer,
+                        onPressed: submitRegisterInfo,
+                        onHighlightChanged: (onPressed){
+                          setState(() {
+                            if(onPressed){
+                              d= 2;
+                            e = AppStyle.colorRed;
+                            }else{
+                               d = 0.5;
+                               e = c;
+                            }
+                          });
+                        },
+                       child: Container(
+                         height: ScreenUtil.getInstance().setWidth(74),
                         width: ScreenUtil.getInstance().setWidth(168),
                             alignment: Alignment.center,
-                             decoration: BoxDecoration(
-                               color: Colors.red,
-                      borderRadius: BorderRadius.circular(ScreenUtil.getInstance().setWidth(74.0)),
-                      border: Border.all(
-                        color: AppStyle.colorGreyText,
-                        width: 0.5,
-                      )
-                  ),
                             child: Text(
                               '登录',
                               style: TextStyle(
@@ -748,9 +837,11 @@ class _LoginFromDemoState extends State<LoginFromDemo> {
                               ),
                             ),
 
-                          ),// 下部的影子，该值越
-      onTap: submitRegisterInfo,
+                          ),// 下部的影子
+                      )
                       ),
+                        
+                       
                       ),
                       Expanded(flex: 2,
                         child: Container(),
@@ -787,6 +878,11 @@ class _RegisterFromDemoState extends State<RegisterFromDemo> {
     String reqSn = '';
     String imageNetString = '';
     bool autoValidate = false,_isAvailable = true;
+
+    double a = 0.5;
+    Color c = AppStyle.colorPrimary;
+    double d = 0.5;
+    Color e = AppStyle.colorPrimary;
     void _gotoHelpWord() async{
         Application.router.navigateTo(context, Routes.helpWord,transition: TransitionType.native);
     }
@@ -796,9 +892,14 @@ class _RegisterFromDemoState extends State<RegisterFromDemo> {
 getImageYz(){
     //获取图文验证码
     ApiConfig().obtainImage(1).then((onValue){
-      print(onValue);
       if(onValue['rspCode'].toString() != '0000'){
-        showToast(onValue['rspDesc']
+        Fluttertoast.showToast(msg:onValue['rspDesc'],
+         toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0
       );
       
       return;
@@ -818,7 +919,12 @@ getImageYz(){
   }
     void submitRegistInfo (){
         if(_newValue == false){
-          showToast('需勾选同意用户服务条款和隐私保护条款');
+          Fluttertoast.showToast(msg:'需勾选同意用户服务条款和隐私保护条款', toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
           return;
         }
         if(registerFormKey.currentState.validate()){
@@ -836,7 +942,13 @@ getImageYz(){
             ApiConfig().registerUser(username, email, phoneNumber, reqSn, verificationCode, password).then((response){
               Navigator.pop(context); //关闭对话框
                 if(response['rspCode'] != '0000'){
-                    showToast(response['rspDesc']
+                    Fluttertoast.showToast(msg:response['rspDesc'],
+                     toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0
                     );
                     return;
                 }
@@ -853,7 +965,13 @@ getImageYz(){
                   jpush.setAlias(onValue1['userNo']).then((map) {
                     print(map);
                     }).catchError((error) {});
-                  showToast('注册成功',
+                  Fluttertoast.showToast(msg:'注册成功',
+                   toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0
                 );
                   Timer(Duration(seconds: 2),(){
                     Navigator.pop(context);
@@ -862,7 +980,13 @@ getImageYz(){
                 return;
             }else{
               //弹窗
-                showToast(response['rspDesc']
+                Fluttertoast.showToast(msg:response['rspDesc'],
+                 toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0
                 );
             }
                 });
@@ -938,12 +1062,24 @@ getImageYz(){
 
         registerFormKey.currentState.save();//保存信息
         if(imagever.length == 0){
-          showToast("需输入图形验证码");
+          Fluttertoast.showToast(msg:"需输入图形验证码",
+           toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
           getImageYz();
           return false;
         }else if(imgCode != imagever){
               //弹窗
-            showToast("图形验证码不正确,请重新输入");
+            Fluttertoast.showToast(msg:"图形验证码不正确,请重新输入",
+             toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
             getImageYz();
             return false;
             }
@@ -951,7 +1087,13 @@ getImageYz(){
             //弹窗
 //            showToast("请输入正确,再获取验证码!");
         if(validatephoneNumber(phoneNumber) != null){
-          showToast(validatephoneNumber(phoneNumber));
+          Fluttertoast.showToast(msg:validatephoneNumber(phoneNumber),
+           toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
         }
         _isAvailable = true;
             return false;
@@ -969,12 +1111,24 @@ getImageYz(){
             ApiConfig().sendMessage('1', phoneNumber).then((response){
               Navigator.pop(context);
               if(response['rspCode'] == '0000'){
-                    showToast('发送成功',
+                    Fluttertoast.showToast(msg:'发送成功',
+                     toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0
                     );
                     reqSn = response['reqSn'];
                     return true;
                 }else{
-                  showToast(response['rspDesc'],
+                  Fluttertoast.showToast(msg:response['rspDesc'],
+                   toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0
                     );
                     return false;
                 }
@@ -1000,6 +1154,7 @@ getImageYz(){
                 children: <Widget>[
                   SizedBox(height: ScreenUtil.getInstance().setHeight(80)),
                     TextFormField(
+                      cursorColor: AppStyle.colorPrimary,
                       validator: usernamevalidateVerificationCode,
                       onSaved: (value){
                             username = value;
@@ -1019,6 +1174,7 @@ getImageYz(){
                     ),
                     SizedBox(height: ScreenUtil.getInstance().setHeight(40),),
                     TextFormField(
+                      cursorColor: AppStyle.colorPrimary,
                       decoration: InputDecoration(
                         fillColor: AppStyle.colorPrimary,
                         labelText: 'Email',
@@ -1044,6 +1200,7 @@ getImageYz(){
                     ),
                     SizedBox(height: ScreenUtil.getInstance().setHeight(40),),
                     TextFormField(
+                      cursorColor: AppStyle.colorPrimary,
                         obscureText: true,
                         initialValue: password,
                         decoration: InputDecoration(
@@ -1070,6 +1227,7 @@ getImageYz(){
                     ),
                     SizedBox(height: ScreenUtil.getInstance().setHeight(40),),
                     TextFormField(
+                      cursorColor: AppStyle.colorPrimary,
                         decoration: InputDecoration(
                             fillColor: AppStyle.colorPrimary,
                             labelText: '手机号',
@@ -1097,6 +1255,7 @@ getImageYz(){
                         alignment: Alignment(0 , 0),
                         children: <Widget>[
                             TextFormField(
+                              cursorColor: AppStyle.colorPrimary,
                               initialValue: imagever,
                                 obscureText: false,
                                 decoration: InputDecoration(
@@ -1147,6 +1306,7 @@ getImageYz(){
                         alignment: Alignment(0 , 0),
                         children: <Widget>[
                             TextFormField(
+                              cursorColor: AppStyle.colorPrimary,
                                 obscureText: false,
                                 decoration: InputDecoration(
                                     labelText: '验证码',
@@ -1267,18 +1427,35 @@ getImageYz(){
                        child: Container(),
                       ),
                       Expanded(flex: 2,
-                      child: GestureDetector(
-                            child: Container(
-                              height: ScreenUtil.getInstance().setWidth(74),
+                      child: Container(
+                          height: ScreenUtil.getInstance().setWidth(74),
                         width: ScreenUtil.getInstance().setWidth(168),
+                        child: MaterialButton(
+                              shape: RoundedRectangleBorder(
+                                            side: BorderSide(
+                                              width: a,
+                                              color: c,
+                                              style: BorderStyle.solid,
+                                            ),
+                                            borderRadius: BorderRadius.all(Radius.circular(37)),
+                              ),
+                        onPressed: (){
+                          Navigator.pop(context);
+                        },
+                        onHighlightChanged: (onPressed){
+                          print(onPressed);
+                          setState(() {
+                            if(onPressed){
+                              a= 2;
+                            c = Colors.red;
+                            }else{
+                               a = 0.5;
+                               c = AppStyle.colorPrimary;
+                            }
+                          });
+                        },
+                       child: Container(
                             alignment: Alignment.center,
-                             decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(ScreenUtil.getInstance().setWidth(74.0)),
-                      border: Border.all(
-                        color: AppStyle.colorGreyText,
-                        width: 0.5,
-                      )
-                  ),
                             child: Text(
                               '取消',
                               style: TextStyle(
@@ -1287,41 +1464,54 @@ getImageYz(){
                               ),
                             ),
 
-                          ),// 下部的影子，该值越
-      onTap:(){
-                            Navigator.pop(context);
-                          },
-                      ), 
+                          ),// 下部的影子
+                      )
+                      ),
                       ),
                       SizedBox(width: ScreenUtil.getInstance().setHeight(30)),
                       Expanded(
                         flex: 2,
-                        child: GestureDetector(
-                            child: Container(
+                        child: Container(
+                        child: MaterialButton(
+                          color: Colors.red,
+                          shape: RoundedRectangleBorder(
+                            
+               side: BorderSide(
+                 width: d,
+                 color: e ,
+                 style: BorderStyle.solid,
+               ),
+               borderRadius: BorderRadius.all(Radius.circular(37)),
+             ),
 
-                              height: ScreenUtil.getInstance().setWidth(74),
+clipBehavior: Clip.antiAliasWithSaveLayer,
+                        onPressed: submitRegistInfo,
+                        onHighlightChanged: (onPressed){
+                          setState(() {
+                            if(onPressed){
+                              d= 2;
+                            e = AppStyle.colorRed;
+                            }else{
+                               d = 0.5;
+                               e = c;
+                            }
+                          });
+                        },
+                       child: Container(
+                         height: ScreenUtil.getInstance().setWidth(74),
                         width: ScreenUtil.getInstance().setWidth(168),
                             alignment: Alignment.center,
-                             decoration: BoxDecoration(
-                               color: Colors.red,
-                      borderRadius: BorderRadius.circular(ScreenUtil.getInstance().setWidth(74.0)),
-                      border: Border.all(
-                        color: AppStyle.colorGreyText,
-                        width: 0.5,
-                      )
-                  ),
                             child: Text(
                               '注册',
                               style: TextStyle(
-                                
                                   color: AppStyle.colorWhite,
                                   fontSize: ScreenUtil.getInstance().setSp(26.0)
                               ),
                             ),
 
-                          ),// 下部的影子，该值越
-           onTap:submitRegistInfo
-                      ), 
+                          ),// 下部的影子
+                      )
+                      ),
                       ),
                       Expanded(flex: 2,
                         child: Container(),
@@ -1353,6 +1543,7 @@ final TextStyle _availableStyle = TextStyle(
 final TextStyle _unavailableStyle = TextStyle(
     fontSize: ScreenUtil.getInstance().setSp(28.0),
     color: AppStyle.colorPrimary,
+    fontWeight: FontWeight.w600
 );
 
 class LoginFormCode extends StatefulWidget {

@@ -649,7 +649,7 @@ class _DepositDetailPageState extends State<DepositDetailPage>
   Widget getMissageRow(BuildContext context,int position, List list){
     String a = list[position];
     return Container(
-      padding: EdgeInsets.only(top: ScreenUtil.getInstance().setHeight(10)),
+      padding: EdgeInsets.only(top: 10,bottom: 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

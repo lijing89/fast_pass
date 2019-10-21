@@ -60,7 +60,12 @@ class _FPSellPricePageState extends State<FPSellPricePage> {
 //    }
     if(_sellIndex == 2 && _price == 0){
       //弹窗
-      showToast("当前商品还没有卖家报价，请您先通过“竞价卖”出价，然后等待买家匹配。");
+      Fluttertoast.showToast(msg:"当前商品还没有卖家报价，请您先通过“竞价卖”出价，然后等待买家匹配。",toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
       return;
     }
 
@@ -91,7 +96,12 @@ class _FPSellPricePageState extends State<FPSellPricePage> {
         Application.router.navigateTo(context,'${Routes.sellPay}?id=${widget.id}&orderId=${orderData['orderNo']}',transition: TransitionType.native);
       }
       else {
-        showToast(orderData['rspDesc']);
+        Fluttertoast.showToast(msg:orderData['rspDesc'],toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
       }
 
     });
@@ -120,11 +130,21 @@ class _FPSellPricePageState extends State<FPSellPricePage> {
       _price = ((computePriceData['price']??0) / 100) ~/ 1;
       if(_price == 0){
         _sellIndex = 1;
-        showToast('当前商品还没有买家出价，请您先通过“竞价卖”报价，然后等待买家匹配。');
+        Fluttertoast.showToast(msg:'当前商品还没有买家出价，请您先通过“竞价卖”报价，然后等待买家匹配。',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
       }
     } else {
 //      print('------------>');
-      showToast(computePriceData['rspDesc']);
+      Fluttertoast.showToast(msg:computePriceData['rspDesc'],toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
       _computePricesInfo = {};
       _price = 0;
       _sellIndex = 1;
@@ -178,7 +198,12 @@ offer	n1..8	c	r	报价（单位分）。type=1和2时必填。type为其它值�
         _computePricesInfo = computePriceData;
         _price = ((computePriceData['price']??0) / 100) ~/ 1;
       } else {
-        showToast(computePriceData['rspDesc']);
+        Fluttertoast.showToast(msg:computePriceData['rspDesc'],toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
         _computePricesInfo = {};
         _price = 0;
       }

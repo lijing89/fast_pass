@@ -37,19 +37,39 @@ class _FPNewIncludedCommoditiesPageState extends State<FPNewIncludedCommoditiesP
     String color = _colorController.text??'';
     String other = _otherController.text??'';
     if(name == ''){
-      showToast('请输入商品名称信息');
+      Fluttertoast.showToast(msg:'请输入商品名称信息',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
       return;
     }
     if(brand == ''){
-      showToast('请输入品牌和系列信息');
+      Fluttertoast.showToast(msg:'请输入品牌和系列信息',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
       return;
     }
     if(size == ''){
-      showToast('请输入款式和尺码信息');
+      Fluttertoast.showToast(msg:'请输入款式和尺码信息',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
       return;
     }
     if(color == ''){
-      showToast('请输入颜色信息');
+      Fluttertoast.showToast(msg:'请输入颜色信息',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
       return;
     }
     //显示加载动画

@@ -124,7 +124,7 @@ leaveLogIn(BuildContext context){
       drawer: mydrawer,
       drawerScrimColor: Colors.transparent,
       key: _scaffoldkey,
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFFF5F5F5),
       appBar: myappbar(context, true, false,sckey: _scaffoldkey,leaveLogIn: leaveLogIn,image: imgUrl),
       body: ar.length == 0
           ? LoadingDialog(
@@ -140,35 +140,35 @@ leaveLogIn(BuildContext context){
                   padding: EdgeInsets.all(0),
                   child: ListView(
                     physics: ClampingScrollPhysics(), //禁止弹簧效果
-                    padding: EdgeInsets.only(top: ScreenUtil.getInstance().setHeight(110)),
+                    padding: EdgeInsets.only(top: 87),
                     children: <Widget>[
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Container(
-                            padding: EdgeInsets.all(ScreenUtil.getInstance().setHeight(20)),
+                            padding: EdgeInsets.all(10),
                             width: double.infinity,
                             child: Text(
                               detail['title'],
                               textAlign: TextAlign.left,
                               style:
-                                  TextStyle(fontSize: 24, color: Colors.black),
+                                  TextStyle(fontSize: 24, color: Color(0xFF33333A)),
                             ),
                           ),
                            Container(
-                                  padding: EdgeInsets.fromLTRB(ScreenUtil.getInstance().setHeight(20), ScreenUtil.getInstance().setHeight(20), 0, 0),
+                                  padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
                                   width: double.infinity,
                                   child: Text(
                                     detail['date'],
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
-                                        fontSize: 12, color: Colors.black),
+                                        fontSize: 12, color: Color(0xFF33333A)),
                                   ),
                                 ),
                           ListView.builder(
                             shrinkWrap: true,
                             physics: NeverScrollableScrollPhysics(),
-                            padding: EdgeInsets.fromLTRB(10,  ScreenUtil.getInstance().setHeight(20), 10, 20),
+                            padding: EdgeInsets.fromLTRB(10,  10, 10, 20),
                             itemCount: ar.length,
                             itemBuilder: (BuildContext context, int position) {
                               return _items(context, position);
@@ -215,7 +215,7 @@ leaveLogIn(BuildContext context){
         child: Text(
           a['content'],
           textAlign: TextAlign.left,
-          style: TextStyle(fontSize: 12, color: Colors.black),
+          style: TextStyle(fontSize: 12, color: Color(0xFF33333A)),
         ),
       );
     } else if (a['type'] == 2) {

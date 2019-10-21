@@ -362,7 +362,10 @@ class SmartDrawer extends StatefulWidget {
 class _SmartDrawerState extends State<SmartDrawer> {
   String _logIn = '0';
   String imgUrl = '';
-
+   double a = 0.5;
+    Color c = Colors.transparent;
+    double d = 0.5;
+    Color e = Colors.transparent;
   bool sonMenu = false;
   @override
   void initState() {
@@ -402,7 +405,7 @@ class _SmartDrawerState extends State<SmartDrawer> {
   Widget build(BuildContext context) {
     assert(debugCheckHasMaterialLocalizations(context));
     String label = widget.semanticLabel;
-    Widget drawerListItem({String title,Color titleColor,double lineWidth,Function onTap,bool hasLine}){
+    Widget drawerListItem({String title,Color titleColor,double lineWidth,Function onTap,bool hasLine,bool linColor = true}){
       return GestureDetector(
         onTap: onTap,
         child: Column(
@@ -418,9 +421,9 @@ class _SmartDrawerState extends State<SmartDrawer> {
                 decoration: TextDecoration.none,
               ),
             ),
-            SizedBox(height: ScreenUtil.getInstance().setWidth(16.0),),
+            SizedBox(height: ScreenUtil.getInstance().setWidth(10.0),),
             hasLine
-                ? Container(height: 1,width: lineWidth,color: Color(0xFFCBCBCB),margin: EdgeInsets.only(left: 30,right: 30),)
+                ? Container(height: 0.5,width: lineWidth,color: linColor?Color(0xFFCBCBCB):Color(0xFFFFFFFF),margin: EdgeInsets.only(left: 30,right: 30),)
                 : Container(),
             SizedBox(height: ScreenUtil.getInstance().setWidth(16.0),),
           ],
@@ -457,19 +460,12 @@ class _SmartDrawerState extends State<SmartDrawer> {
                       Expanded(
                         flex: _logIn == '1'?4:6,
                         child: Container(
-                          height: double.infinity,
+                          height: ScreenUtil.getInstance().setWidth(1000),
                           color: _logIn == '1' ? AppStyle.colorPrimary : AppStyle.colorWhite,
                           child: Column(
                             children: <Widget>[
-                              Container(
-                                padding: EdgeInsets.only(
-                                  left:ScreenUtil.getInstance().setWidth(16.0),
-                                ),
-                                alignment: Alignment.centerLeft,
-                                height: ScreenUtil.getInstance().setWidth(75.0),
-                                width: double.infinity,
-                                color: _logIn == '1' ? AppStyle.colorPrimary : AppStyle.colorWhite,
-                              ),
+                             
+                              SizedBox(height: ScreenUtil.getInstance().setWidth(20.0),),
                               _logIn == '1' ?
                               GestureDetector(
                                 onTap: (){
@@ -484,13 +480,14 @@ class _SmartDrawerState extends State<SmartDrawer> {
                                 },
                                 child: Container(
                                   width: double.infinity,
-                                  height: ScreenUtil.getInstance().setWidth(140.0),
+                                  height: ScreenUtil.getInstance().setWidth(170.0),
                                   color: AppStyle.colorPrimary,
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
                                       ClipOval(
                                         child: Container(
+                                          color: Colors.white,
                                             width: ScreenUtil.getInstance().setWidth(64.0),
                                             height: ScreenUtil.getInstance().setWidth(64.0),
                                             child: imgUrl ==null? Image(image: AssetImage(AssetUtil.image('video@3x.png')),fit: BoxFit.fill,):CachedNetworkImage(
@@ -513,11 +510,12 @@ class _SmartDrawerState extends State<SmartDrawer> {
                                   :
                               Container(
                                 width: double.infinity,
-                                height: ScreenUtil.getInstance().setWidth(80.0),
+                                height: ScreenUtil.getInstance().setWidth(150.0),
                                 color: AppStyle.colorWhite,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
+                                     SizedBox(width: ScreenUtil.getInstance().setWidth(30.0),),
                                     Row(
                                       children: <Widget>[
                                         Expanded(child: SizedBox(height: 1,),),
@@ -529,8 +527,8 @@ class _SmartDrawerState extends State<SmartDrawer> {
                                             Application.router.navigateTo(context, '${Routes.LoginRPage}?isLogin=$islog',transition: TransitionType.native);
                                           },
                                           child: Container(
-                                            height: ScreenUtil.getInstance().setWidth(74.0),
-                                            width: ScreenUtil.getInstance().setWidth(168.0),
+                                            height: ScreenUtil.getInstance().setWidth(64.0),
+                                            width: ScreenUtil.getInstance().setWidth(148.0),
                                             decoration: BoxDecoration(
                                                 color: AppStyle.colorPrimary,
                                                 borderRadius: BorderRadius.all(Radius.circular(ScreenUtil.getInstance().setWidth(64.0)))
@@ -556,8 +554,8 @@ class _SmartDrawerState extends State<SmartDrawer> {
                                             Application.router.navigateTo(context, '${Routes.LoginRPage}?isLogin=$islog',transition: TransitionType.native);
                                           },
                                           child: Container(
-                                             height: ScreenUtil.getInstance().setWidth(74.0),
-                                            width: ScreenUtil.getInstance().setWidth(168.0),
+                                            height: ScreenUtil.getInstance().setWidth(64.0),
+                                            width: ScreenUtil.getInstance().setWidth(148.0),
                                             decoration: BoxDecoration(
                                                 color: AppStyle.colorPrimary,
                                                 borderRadius: BorderRadius.all(Radius.circular(ScreenUtil.getInstance().setWidth(64.0)))
@@ -577,6 +575,7 @@ class _SmartDrawerState extends State<SmartDrawer> {
                                         Expanded(child: SizedBox(height: 1,),),
                                       ],
                                     ),
+                                     SizedBox(width: ScreenUtil.getInstance().setWidth(16.0),),
                                   ],
                                 ),
                               ),
@@ -663,62 +662,114 @@ class _SmartDrawerState extends State<SmartDrawer> {
                                 ),
                               ),
                               Container(
+                                color: AppStyle.colorWhite,
+                                height: ScreenUtil.getInstance().setHeight(30.0),
+                              ),
+                              Container(
                                 width: double.infinity,
                                 color: AppStyle.colorWhite,
-                                height: ScreenUtil.getInstance().setWidth(349.0),
+                                height: ScreenUtil.getInstance().setWidth(250.0),
                                 child: Column(
                                   children: <Widget>[
-                                    Expanded(flex: 1,child: SizedBox(width: 1,),),
+                                    Expanded(flex: 1,child: SizedBox(height: 5,),),
                                     
-                                    GestureDetector(
-                                      onTap: (){
-                                        Application.router.navigateTo(context, '${Routes.buyTips}?id=0&type=1',transition: TransitionType.native);
-                                      },
-                                      child: ClipOval(
-                                        child: Container(
-                                          width: ScreenUtil.getInstance().setWidth(70.0),
-                                          height: ScreenUtil.getInstance().setWidth(70.0),
-                                          color: AppStyle.colorPink,
-                                          child: Center(
-                                            child: Text(
-                                              '买',
-                                              style: TextStyle(
-                                                color: AppStyle.colorWhite,
-                                                fontSize: ScreenUtil.getInstance().setSp(30.0),
-                                                fontWeight: FontWeight.w600,
-                                                decoration: TextDecoration.none,
-                                              ),
+                                    Container(
+                                      alignment: Alignment.center,
+                          height: ScreenUtil.getInstance().setWidth(70),
+                        width: ScreenUtil.getInstance().setWidth(70),
+                        child: MaterialButton(
+                          highlightColor: AppStyle.colorBackground,
+                          color: AppStyle.colorRed,
+                              shape: RoundedRectangleBorder(
+                                            side: BorderSide(
+                                              width: a,
+                                              color: c,
+                                              style: BorderStyle.solid,
                                             ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(height: ScreenUtil.getInstance().setHeight(32.0),),
-                                    GestureDetector(
-                                      onTap: (){
-                                        Application.router.navigateTo(context, '${Routes.sellTips}?id=0&type=1',transition: TransitionType.native);
-                                      },
-                                      child: ClipOval(
-                                        child: Container(
-                                          width: ScreenUtil.getInstance().setWidth(70.0),
-                                          height: ScreenUtil.getInstance().setWidth(70.0),
-                                          color: AppStyle.colorSuccess,
-                                          child: Center(
-                                            child: Text(
-                                              '卖',
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                
-                                                color: AppStyle.colorWhite,
-                                                fontSize: ScreenUtil.getInstance().setSp(30.0),
-                                                fontWeight: FontWeight.w600,
-                                                decoration: TextDecoration.none,
-                                              ),
+                                            borderRadius: BorderRadius.all(Radius.circular(35)),
+                              ),
+                        onPressed: (){
+                         Application.router.navigateTo(context, '${Routes.buyTips}?id=0&type=1',transition: TransitionType.native);
+
+                        },
+                        onHighlightChanged: (onPressed){
+                          setState(() {
+                            if(onPressed){
+                              a= 1;
+                              c = AppStyle.colorPrimary;
+                            }else{
+                               a = 0.5;
+                               c = Colors.transparent;
+                            }
+                          });
+                        },
+                       child: Container(
+                            alignment: Alignment.center,
+                            child: Text(
+                              '买',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: ScreenUtil.getInstance().setSp(30.0),
+                                fontWeight: FontWeight.w600,
+                                decoration: TextDecoration.none,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                      )
+                      ),
+
+                       SizedBox(height: ScreenUtil.getInstance().setHeight(40.0),),
+                       Container(
+                                      alignment: Alignment.center,
+                          height: ScreenUtil.getInstance().setWidth(70),
+                        width: ScreenUtil.getInstance().setWidth(70),
+                        child:MaterialButton(
+                          minWidth: ScreenUtil.getInstance().setWidth(60),
+                          color: Color(0xFF2D9633),
+                          highlightColor: AppStyle.colorBackground,
+                              shape: RoundedRectangleBorder(
+                                            side: BorderSide(
+                                              width: d,
+                                              color: e,
+                                              style: BorderStyle.solid,
                                             ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
+                                            borderRadius: BorderRadius.all(Radius.circular(35)),
+                              ),
+                        onPressed: (){
+                          Application.router.navigateTo(context, '${Routes.sellTips}?id=0&type=1',transition: TransitionType.native);
+
+                        },
+                        onHighlightChanged: (onPressed){
+                          setState(() {
+                            if(onPressed){
+                              d= 1;
+                              e = AppStyle.colorPrimary;
+                            }else{
+                               d = 0.5;
+                               e = Colors.transparent;
+                            }
+                          });
+                        },
+                       child: Container(
+                            alignment: Alignment.center,
+                            child: Center(
+                              child: Text(
+                                '卖',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  
+                                  color: AppStyle.colorWhite,
+                                  fontSize: ScreenUtil.getInstance().setSp(30.0),
+                                  fontWeight: FontWeight.w600,
+                                  decoration: TextDecoration.none,
+                                ),
+                              ),
+                            ),
+                          ),
+                      )
+                      ),
+                      SizedBox(height: ScreenUtil.getInstance().setHeight(40.0),),
                                     Expanded(flex: 2,child: SizedBox(width: 1,),),
                                   ],
                                 ),
@@ -739,11 +790,13 @@ class _SmartDrawerState extends State<SmartDrawer> {
                                 width: double.infinity,
                                 child: Column(
                                   children: <Widget>[
+                                    SizedBox(height: 30,),
                                     drawerListItem(
                                         title: '我的购买',
                                         titleColor: AppStyle.colorWhite,
-                                        lineWidth: 0,
+                                        lineWidth: double.infinity-60,
                                         hasLine: true,
+                                        linColor: false,
                                         onTap: (){
                                           Navigator.pop(context);
                                           String action = '0';
@@ -755,8 +808,9 @@ class _SmartDrawerState extends State<SmartDrawer> {
                                     drawerListItem(
                                         title: '我的出售',
                                         titleColor: AppStyle.colorWhite,
-                                        lineWidth: 0,
+                                        lineWidth: double.infinity-60,
                                         hasLine: true,
+                                        linColor: false,
                                         onTap: (){
                                           Navigator.pop(context);
                                           String action = '1';
@@ -768,8 +822,9 @@ class _SmartDrawerState extends State<SmartDrawer> {
                                     drawerListItem(
                                         title: '我的会员仓',
                                         titleColor: AppStyle.colorWhite,
-                                        lineWidth: 0,
+                                        lineWidth: double.infinity-60,
                                         hasLine: true,
+                                        linColor: false,
                                         onTap: (){
                                           Navigator.pop(context);
                                           String action = '2';
@@ -781,8 +836,9 @@ class _SmartDrawerState extends State<SmartDrawer> {
                                     drawerListItem(
                                         title: '设置',
                                         titleColor: AppStyle.colorWhite,
-                                        lineWidth: 0,
+                                        lineWidth: double.infinity-60,
                                         hasLine: true,
+                                        linColor: false,
                                         onTap: (){
                                           Navigator.pop(context);
                                           String action = '3';
@@ -800,6 +856,7 @@ class _SmartDrawerState extends State<SmartDrawer> {
                                           fpshowDiaLog(context, '', '确定要退出登录吗?', sureSelected);
                                         }
                                     ),
+                                    SizedBox(height: 30,),
                                   ],
                                 ),
                               ),
@@ -852,7 +909,12 @@ sureSelected(){
     ApiConfig().leaveLogin().then((response) {
       Navigator.pop(context);
 
-      showToast( '登录已注销');
+      Fluttertoast.showToast(msg:'登录已注销',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
       UserInfoCache().setUserInfo(userInfo: {});
       UserInfoCache().setUserNo(userNo: {});
       UserInfoCache().saveInfo(

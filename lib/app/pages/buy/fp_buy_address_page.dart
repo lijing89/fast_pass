@@ -68,7 +68,14 @@ class _FPBuyAddressPageState extends State<FPBuyAddressPage> {
     var accountInfo = await ApiConfig().getAccount();
     if(accountInfo == null){return;}
     if(accountInfo['rspCode'] != '0000'){
-      showToast(accountInfo['rspDesc']);
+      Fluttertoast.showToast(msg:accountInfo['rspDesc'],
+       toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIos: 2,
+          backgroundColor: AppStyle.colorGreyDark,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
       return;
     }
 
@@ -176,13 +183,17 @@ offer	n1..8	c	r	报价（单位分）。type=1和2时必填。type为其它值�
           _computePricesInfo = computePriceData;
           _price = ((computePriceData['price']??0) / 100) ~/ 1;
       } else {
-        showToast(computePriceData['rspDesc']);
+        Fluttertoast.showToast(msg:computePriceData['rspDesc'],
+         toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIos: 2,
+            backgroundColor: AppStyle.colorGreyDark,
+            textColor: Colors.white,
+            fontSize: 16.0);
         _computePricesInfo = {};
 //        _price = 0;
       }
-
       setState(() {});
-
     });
   }
 
@@ -210,7 +221,14 @@ offer	n1..8	c	r	报价（单位分）。type=1和2时必填。type为其它值�
 //    }
     if(_buyIndex == 2 && _price == 0){
       //弹窗
-      showToast("不能直接购买!");
+      Fluttertoast.showToast(msg:"不能直接购买!",
+       toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0
+      );
       return;
     }
 
@@ -223,22 +241,45 @@ offer	n1..8	c	r	报价（单位分）。type=1和2时必填。type为其它值�
 
     if(_city == '点我选择城市' && !_isSaveInFP){
       //弹窗
-      showToast("请选择城市!");
+      Fluttertoast.showToast(msg:"请选择城市!",
+       toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
       return;
     }
     if(_addressDetailController.text == '' && !_isSaveInFP){
       //弹窗
-      showToast("请输入街道和门牌号!");
+      Fluttertoast.showToast(msg:"请输入街道和门牌号!",
+       toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
       return;
     }
     if(_nameController.text == '' && !_isSaveInFP){
       //弹窗
-      showToast("请输入收货人姓名!");
+      Fluttertoast.showToast(msg:"请输入收货人姓名!",
+       toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
       return;
     }
     if(!Application.isPhoneNumber(_phoneNumberController.text) && !_isSaveInFP){
       //弹窗
-      showToast("请输入正确的手机号码!");
+      Fluttertoast.showToast(msg:"请输入正确的手机号码!", toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
       return;
     }
     ApiConfig().createBuyOrder(comdiId:widget.id,
@@ -275,7 +316,12 @@ offer	n1..8	c	r	报价（单位分）。type=1和2时必填。type为其它值�
         Application.router.navigateTo(context,'${Routes.buyPay}?id=${widget.id}&orderId=${orderData['orderNo']}',transition: TransitionType.native);
       }
       else {
-        showToast(orderData['rspDesc']);
+        Fluttertoast.showToast(msg:orderData['rspDesc'], toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIos: 2,
+            backgroundColor: AppStyle.colorGreyDark,
+            textColor: Colors.white,
+            fontSize: 16.0);
       }
 
     });
@@ -581,6 +627,7 @@ offer	n1..8	c	r	报价（单位分）。type=1和2时必填。type为其它值�
               primaryColor: AppStyle.colorPrimary,
             ),
             child: TextField(
+              cursorColor: AppStyle.colorPrimary,
               controller: _addressDetailController,
               maxLines: 1,//最大行数
               decoration: InputDecoration(
@@ -590,7 +637,10 @@ offer	n1..8	c	r	报价（单位分）。type=1和2时必填。type为其它值�
                 labelStyle: TextStyle(
                   color: AppStyle.colorPrimary,
                   fontSize:ScreenUtil.getInstance().setSp(28.0),
-                )
+                ),
+                focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color:AppStyle.colorPrimary)
+                          )
               ),
               style: TextStyle(fontSize: ScreenUtil.getInstance().setSp(28.0)),//输入文本的样式式
               onChanged: (text) {//内容改变的回调
@@ -611,6 +661,7 @@ offer	n1..8	c	r	报价（单位分）。type=1和2时必填。type为其它值�
                     primaryColor: AppStyle.colorPrimary,
                   ),
                   child: TextField(
+                    cursorColor: AppStyle.colorPrimary,
                     controller: _nameController,
                     maxLines: 1,//最大行数
                     decoration:
@@ -621,7 +672,10 @@ offer	n1..8	c	r	报价（单位分）。type=1和2时必填。type为其它值�
                         labelStyle: TextStyle(
                           color: AppStyle.colorPrimary,
                           fontSize:ScreenUtil.getInstance().setSp(28.0),
-                        )
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color:AppStyle.colorPrimary)
+                          )
                     ),
                     style: TextStyle(fontSize: ScreenUtil.getInstance().setSp(28.0)),//输入文本的样式式
                     onChanged: (text) {//内容改变的回调
@@ -641,6 +695,7 @@ offer	n1..8	c	r	报价（单位分）。type=1和2时必填。type为其它值�
                     primaryColor: AppStyle.colorPrimary,
                   ),
                   child: TextField(
+                    cursorColor: AppStyle.colorPrimary,
                     controller: _phoneNumberController,
                     maxLines: 1,//最大行数
                     decoration:
@@ -651,7 +706,10 @@ offer	n1..8	c	r	报价（单位分）。type=1和2时必填。type为其它值�
                         labelStyle: TextStyle(
                           color: AppStyle.colorPrimary,
                           fontSize:ScreenUtil.getInstance().setSp(28.0),
-                        )
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color:AppStyle.colorPrimary)
+                          )
                     ),
                     style: TextStyle(fontSize: ScreenUtil.getInstance().setSp(28.0)),//输入文本的样式式
                     onChanged: (text) {//内容改变的回调

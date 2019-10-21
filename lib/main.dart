@@ -26,12 +26,12 @@ void main() async {
   ]);
   print('fluwx register');
 //
-  await fluwx.register(
+  await fluwx.registerWxApi(
       appId: "wxe5f5c4d986f28664",
       doOnAndroid: true,
       doOnIOS: true,
-      enableMTA:false,
-//      universalLink: 'https://kuaichuan.net/'
+      // enableMTA:false,
+     universalLink: 'https://kuaichuan.net/'
   );
 
   var result = await fluwx.isWeChatInstalled();

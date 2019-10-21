@@ -458,14 +458,29 @@ class _FPGoodDetailPageState extends State<FPGoodDetailPage> {
       //do something
     switch (response.errCode) {
       case 0:
-        showToast('分享成功');
+        Fluttertoast.showToast(msg:'分享成功',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
         Navigator.pop(context);
         break;
       case -2:
-        showToast('取消分享');
+        Fluttertoast.showToast(msg:'取消分享',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
         break;
       default:
-        showToast('分享失败');
+        Fluttertoast.showToast(msg:'分享失败',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
         break;
     }
     });
@@ -1248,7 +1263,12 @@ leaveLogIn(BuildContext context){
                   setState(() {});
                 }
                 else {
-                  showToast(onValue['rspDesc']);
+                  Fluttertoast.showToast(msg:onValue['rspDesc'],toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
                   return;
                 }
 
@@ -1716,7 +1736,15 @@ leaveLogIn(BuildContext context){
                   List recordsList = onValue['list']??[];
                   print('recordsList = $recordsList');
                   if(recordsList.length ==0){
-                    showToast('无交易记录');
+                     Fluttertoast.showToast(
+            msg: '无交易记录',
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIos: 2,
+            backgroundColor: AppStyle.colorGreyDark,
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
                     return;}
                   String tradeString = recordsList[0]['price'];
                   _newTradePrice = tradeString;
@@ -1726,7 +1754,12 @@ leaveLogIn(BuildContext context){
                   setState(() {});
                 }
                 else {
-                  showToast(onValue['rspDesc']);
+                  Fluttertoast.showToast(msg:onValue['rspDesc'],toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
                   return;
                 }
 
@@ -1798,8 +1831,6 @@ leaveLogIn(BuildContext context){
             alignment: Alignment.centerRight,
             child: GestureDetector(
               onTap: (){
-                print('分享商品:${goodInfo['title']}');
-                print(_goodDetailInfo);
                 shareGood(context,title: goodInfo['title'],image: _goodDetailInfo['titleImgUrl']);
               },
               child: Image(image: AssetImage(AssetUtil.image('arrows2@3x.png')),fit: BoxFit.fitHeight,),

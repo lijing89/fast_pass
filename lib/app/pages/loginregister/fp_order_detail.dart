@@ -116,7 +116,13 @@ class _OrderDetailPageState extends State<OrderDetailPage>
         return;
       }
         if(response['rspCode'] != '0000'){
-            showToast(response['rspDesc']
+            Fluttertoast.showToast(msg:response['rspDesc'],
+            toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0
             );
             return;
         }
@@ -198,7 +204,13 @@ class _OrderDetailPageState extends State<OrderDetailPage>
             return;
           }
           if(onValue['rspCode'] != '0000'){
-            showToast(onValue['rspDesc']
+            Fluttertoast.showToast(msg:onValue['rspDesc'],
+            toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0
             );
             return;
         }
@@ -258,7 +270,13 @@ class _OrderDetailPageState extends State<OrderDetailPage>
               return;
             }
             if (onValue['rspCode'] != '0000') {
-              showToast(onValue['rspDesc']
+              Fluttertoast.showToast(msg:onValue['rspDesc'],
+              toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0
               );
               return;
             }
@@ -460,12 +478,23 @@ class _OrderDetailPageState extends State<OrderDetailPage>
         return;
       }
         if(response['rspCode'] != '0000'){
-            showToast(response['rspDesc']
+            Fluttertoast.showToast(msg:response['rspDesc'],
+            toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0
             );
             return;
         }
         loodData();
-        showToast('交易已取消');
+        Fluttertoast.showToast(msg:'交易已取消',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
       });
   }
   //按钮点击事件
@@ -499,7 +528,13 @@ class _OrderDetailPageState extends State<OrderDetailPage>
     ApiConfig().getAccount().then((onValue){
       if(onValue == null){return;}
       if(onValue['rspCode'] != '0000'){
-        showToast(onValue['rspDesc'],
+        Fluttertoast.showToast(msg:onValue['rspDesc'],
+        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0
         );
         return;
       }
@@ -801,7 +836,12 @@ class _OrderDetailPageState extends State<OrderDetailPage>
   ///确认发货网络请求
 void surdSend(BuildContext context){
     if(expressPostNumber.length != 12){
-      showToast('请正确填写顺丰单号');
+      Fluttertoast.showToast(msg:'请正确填写顺丰单号',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
       return;
     }
 
@@ -810,12 +850,23 @@ void surdSend(BuildContext context){
         return;
       }
       if(onValue['rspCode'] != '0000'){
-        showToast(onValue['rspDesc']
+        Fluttertoast.showToast(msg:onValue['rspDesc'],
+        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0
         );
         return;
       }
       Navigator.pop(context);
-      showToast('已确认发货');
+      Fluttertoast.showToast(msg:'已确认发货',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
       loodData();
     });
 }
@@ -897,12 +948,22 @@ void surdSend(BuildContext context){
                               Navigator.pop(context);
                               if(onValue == null){return;}
                               if(onValue['rspCode'] != '0000'){
-                                    showToast(onValue['rspDesc']);
+                                    Fluttertoast.showToast(msg:onValue['rspDesc'],toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
                                     return;
                                 }
                                 _historyList = onValue['list']??[];
                                 if(_historyList == []){
-                                  showToast('无记录');
+                                  Fluttertoast.showToast(msg:'无记录',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
                                   return;
                                 }
                                 setState(() {
@@ -1002,11 +1063,10 @@ void surdSend(BuildContext context){
                                           )
                                         ),
                                         Container(
-                                          width: ScreenUtil.getInstance()
-                                          .setHeight(40),
-                                          height: ScreenUtil.getInstance()
-                                          .setHeight(40),
-                                          margin: EdgeInsets.only(top: 40),
+
+                                          width: 20,
+                                          height: 20,
+                                          margin: EdgeInsets.only(top: 45),
                                           child:  Image(image: AssetImage(AssetUtil.image('ordermessage_icon.png')),fit: BoxFit.fitWidth,)
                                           
                                         ),
@@ -1126,7 +1186,7 @@ void surdSend(BuildContext context){
                            alignment: Alignment.center,
                           width: 20,
                           height: 20,
-                          margin: EdgeInsets.only(right: 10,top: 10),
+                          margin: EdgeInsets.only(right: 20,top: 10),
                           child: GestureDetector(
                           onTap: () {
                             setState(() {
@@ -1141,12 +1201,17 @@ void surdSend(BuildContext context){
                     ],
                   ),
                           
-                          
+                          SizedBox(
+                                  height: 10,
+                                ),
                           Container(
+                            alignment: Alignment.topCenter,
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Container(
+                                  padding: EdgeInsets.only(top: 2),
                                   width: ScreenUtil.screenWidthDp/3,
                                   child:  ListView.builder(
                                     shrinkWrap:true,
@@ -1156,6 +1221,8 @@ void surdSend(BuildContext context){
                                     itemBuilder: (BuildContext context, int index) {
                                     Map dic = _historyList[index];
                                     return Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.start,
                                       children: <Widget>[
                                         Container(
                                         alignment: Alignment.centerRight,
@@ -1206,7 +1273,7 @@ void surdSend(BuildContext context){
                                 ),
 
                                 Container(
-                                  margin: EdgeInsets.only(top: 15),
+                                  padding: EdgeInsets.only(top: 3),
                                   width: ScreenUtil.screenWidthDp/3,
                                   child:  ListView.builder(
                                     shrinkWrap:true,
@@ -1215,20 +1282,22 @@ void surdSend(BuildContext context){
                                     itemBuilder: (BuildContext context, int index) {
                                     Map dic = _historyList[index];
                                     return Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.start,
                                       children: <Widget>[
                                         Container(
-                                          margin: EdgeInsets.only(top: 10),
+                                        margin: EdgeInsets.only(bottom: 2),
                                         alignment: Alignment.centerLeft,
                                         child: Text(
                                           dic['time']??'',
                                           style: TextStyle(
-                                            fontSize: 12,
+                                            fontSize: 13,
                                             color: Color(0xFFA49685),
                                           ),
                                         ),
                                       ),
                                      index != _historyList.length-1? SizedBox(
-                                        height: 12,
+                                        height: 20,
                                       ):Container()
                                       ],
                                     );
@@ -1239,7 +1308,7 @@ void surdSend(BuildContext context){
                               ],
                             ),
                           ),
-                          SizedBox(height: ScreenUtil.getInstance().setHeight(40),),
+                          SizedBox(height: 20),
                         ],
                       )
                       ),
@@ -1260,6 +1329,7 @@ void surdSend(BuildContext context){
                         ),
                         Expanded(
                           child: Container(
+                            alignment: Alignment.center,
                             height: 120,
                             color: Color(0xFFF8F2EA),
                             padding: EdgeInsets.only(left: ScreenUtil.getInstance().setHeight(10),right: ScreenUtil.getInstance().setHeight(10)),
@@ -1269,7 +1339,7 @@ void surdSend(BuildContext context){
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Container(
-                                margin: EdgeInsets.only(top: ScreenUtil.getInstance().setHeight(50),left: ScreenUtil.getInstance().setHeight(40),right: ScreenUtil.getInstance().setHeight(10)),
+                                margin: EdgeInsets.only(top: 25,left: ScreenUtil.getInstance().setHeight(40),right: ScreenUtil.getInstance().setHeight(10)),
                                 child: Text(                                                                                                                                                                                                                                    
                                   '商品名称:',
                                   style: TextStyle(
@@ -1285,7 +1355,7 @@ void surdSend(BuildContext context){
                               Expanded(
                                 child: Container(
                                   alignment: Alignment.topLeft,
-                                margin: EdgeInsets.only(top: ScreenUtil.getInstance().setHeight(50),right: ScreenUtil.getInstance().setHeight(10)),
+                                margin: EdgeInsets.only(top: 25,right: ScreenUtil.getInstance().setHeight(10)),
                                 child: Text(
                                   _dataMap['title']??'--',
                                   style: TextStyle(

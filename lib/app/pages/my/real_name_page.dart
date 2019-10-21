@@ -162,7 +162,6 @@ class _RealNameAuthenticationPageState extends State<RealNameAuthenticationPage>
       }
     });
 
-    print('发送验证码');
   }
 
   void submitRegistInfo (){

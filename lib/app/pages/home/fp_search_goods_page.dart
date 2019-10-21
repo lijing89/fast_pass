@@ -210,7 +210,12 @@ class _FPSearchGoodsPageState extends State<FPSearchGoodsPage> with SingleTicker
 
     //请求成功 刷新页面
      if(data['comdiList'].length < pageSize){
-       showToast('没有更多数据啦!');
+       Fluttertoast.showToast(msg:'没有更多数据啦!',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
 
        _easyRefreshKey.currentState.waitState(() {
            setState(() {

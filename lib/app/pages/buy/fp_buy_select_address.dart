@@ -91,7 +91,12 @@ class _FPBuySelectAddressPageState extends State<FPBuySelectAddressPage> with Si
         ApiConfig().getAccount().then((onValue){
             if(onValue == null){return;}
             if(onValue['rspCode'] != '0000'){
-                showToast(onValue['rspDesc']);
+                Fluttertoast.showToast(msg:onValue['rspDesc'],toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
                 return;
             }
             UserInfoCache().setUserInfo(userInfo: onValue);
@@ -131,7 +136,12 @@ class _FPBuySelectAddressPageState extends State<FPBuySelectAddressPage> with Si
             //设置头像
             ApiConfig().updateImage(image).then((onValue){
                 if(onValue['rspCode'] != '0000'){
-                    showToast(onValue['rspDesc']);
+                    Fluttertoast.showToast(msg:onValue['rspDesc'],toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
                     return;
                 }
                 //修改头像
@@ -139,7 +149,12 @@ class _FPBuySelectAddressPageState extends State<FPBuySelectAddressPage> with Si
                     if(onValue['rspCode'] == '0000'){
                         showToast('上传成功');
                     }else{
-                        showToast(onValue['rspDesc']);
+                       Fluttertoast.showToast(msg:onValue['rspDesc'],toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
                         return;
                     }
                 });

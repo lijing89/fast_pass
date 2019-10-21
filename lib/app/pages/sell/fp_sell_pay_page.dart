@@ -63,13 +63,23 @@ class _FPSellPayPageState extends State<FPSellPayPage> {
 //    });
 
     if(!checkOrderTime(_orderTime)){
-      showToast('订单超时,请返回重试.');
+      Fluttertoast.showToast(msg:'订单超时,请返回重试.',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
       return;
     }
 
     ApiConfig().aliPayMoney(_tradeId).then((onValue){
       if (onValue['rspCode'] != '0000') {
-        showToast(onValue['rspDesc']);
+        Fluttertoast.showToast(msg:onValue['rspDesc'],toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
         return;
       }
       //支付宝支付
@@ -96,13 +106,23 @@ class _FPSellPayPageState extends State<FPSellPayPage> {
 //    });
 
     if(!checkOrderTime(_orderTime)){
-      showToast('订单超时,请返回重试.');
+      Fluttertoast.showToast(msg:'订单超时,请返回重试.',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
       return;
     }
 
     ApiConfig().wXPayMoney(_tradeId).then((onValue){
       if (onValue['rspCode'] != '0000') {
-        showToast(onValue['rspDesc']);
+        Fluttertoast.showToast(msg:onValue['rspDesc'],toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
         return;
       }
       //微信支付
@@ -204,23 +224,53 @@ class _FPSellPayPageState extends State<FPSellPayPage> {
       /// 6002——网络连接出错
       switch (resp.resultStatus) {
         case 9000:
-          showToast('订单支付成功');
+          Fluttertoast.showToast(msg:'订单支付成功',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
           Application.router.pop(context);
           break;
         case 6001:
-          showToast('用户中途取消');
+          Fluttertoast.showToast(msg:'用户中途取消',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
           break;
         case 4000:
-          showToast('订单支付失败');
+          Fluttertoast.showToast(msg:'订单支付失败',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
           break;
         case 5000:
-          showToast('重复请求');
+          Fluttertoast.showToast(msg:'重复请求',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
           break;
         case 6002:
-          showToast('网络连接出错');
+          Fluttertoast.showToast(msg:'网络连接出错',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
           break;
         default:
-          showToast('支付失败');
+          Fluttertoast.showToast(msg:'支付失败',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
           break;
       }
     });
@@ -229,14 +279,29 @@ class _FPSellPayPageState extends State<FPSellPayPage> {
       //do something
       switch (response.errCode) {
         case 1:
-          showToast('订单支付成功');
+          Fluttertoast.showToast(msg:'订单支付成功',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
           Application.router.pop(context);
           break;
         case -2:
-          showToast('用户中途取消');
+          Fluttertoast.showToast(msg:'用户中途取消',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
           break;
         default:
-          showToast('支付失败');
+          Fluttertoast.showToast(msg:'支付失败',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
           break;
       }
     });

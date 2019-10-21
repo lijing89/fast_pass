@@ -41,7 +41,10 @@ class _UserSetPageState extends State<UserSetPage> with SingleTickerProviderStat
   TextEditingController _yzmController;
 
   Map userAddress = {'province':'','city':'','district':'','addr':'','name':'','phone':''};
-
+    double a = 0.5;
+    Color c = Color(0xFFBCBCBC);
+    double d = 0.5;
+    Color e = Color(0xFFBCBCBC);
   List shdz = [];
   List fhdz = [];
   Alipay alipay = Alipay();
@@ -88,7 +91,12 @@ class _UserSetPageState extends State<UserSetPage> with SingleTickerProviderStat
     String content = 'pay: ${resp.resultStatus} - ${resp.result}- ${resp.memo}';
     print(resp.resultStatus);
     print(resp.result);
-    showToast(content);
+    Fluttertoast.showToast(msg:content,toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
   }
 @override
   void initState() {
@@ -360,12 +368,22 @@ getImageYz(int type){
                     if(_isEnable){
                       if(name == ''&& email ==''&&phoneNumber == ''){
                         _isEnable = false;
-                        showToast( '无修改');
+                        Fluttertoast.showToast(msg:'无修改',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
                       return;
                       }
                       if(email != ''){
                         if(!Application.isEmail(email)){
-                          showToast('Email格式错误');
+                          Fluttertoast.showToast(msg:'Email格式错误',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
                         }
                         return;
                       }
@@ -387,7 +405,13 @@ getImageYz(int type){
                               _isEnable = false;
                             });
                         }else{
-                          showToast( response['rspDesc'],
+                          Fluttertoast.showToast(msg:response['rspDesc'],
+                          toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0
                             );
                         }
                       });
@@ -408,7 +432,7 @@ getImageYz(int type){
                     width: 90,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(37),
-                    border: new Border.all(color: !_isEnable?AppStyle.colorPrimary:AppStyle.colorRed, width: 0.5), // 边色与边宽度
+                    border: new Border.all(color: !_isEnable?Color(0xFFCBCBCB):AppStyle.colorRed, width: 0.5), // 边色与边宽度
                   ),
                   child: Text(!_isEnable?'修改':'完成',style: TextStyle(fontSize: 16,color: !_isEnable?AppStyle.colorPrimary:AppStyle.colorRed))
                 )
@@ -418,16 +442,26 @@ getImageYz(int type){
           ),
           SizedBox( height: ScreenUtil.getInstance().setHeight(60.0),),
           Container(
-            padding: EdgeInsets.all(20),
+            padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Expanded(
                 flex: 3,
-                child: Text('用户名',style: TextStyle(fontSize: 16,color: AppStyle.colorPrimary,fontWeight: FontWeight.w500)),
+                child: Container(
+                  margin: EdgeInsets.only(top: 10),
+                  child: Text('用户名',style: TextStyle(fontSize: 16,color: AppStyle.colorPrimary,fontWeight: FontWeight.w500)),
+                )
               ),
               Expanded(
                 flex: 7,
-                child: TextField(
+                child: Container(
+                  alignment: Alignment.topCenter,
+                  child: TextField(
+                  textAlign: TextAlign.start,//文本对齐方式
+                  maxLines: 3,
+                   cursorColor: AppStyle.colorPrimary,
+                      
                 controller: _nameController,
                 enabled: _isEnable,
                 keyboardType: TextInputType.text,
@@ -440,7 +474,9 @@ getImageYz(int type){
                         color: Color(0xFF979797),
 
                     ),
-                    
+                    focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color:AppStyle.colorLightDarkText,)
+                          ),
                 ),
                 style: TextStyle(
                     color: Color(0xFF979797)
@@ -455,22 +491,29 @@ getImageYz(int type){
                 }
 
             ),
+                )
               )
             ],
           ),
           ),
           //邮箱
           Container(
-            padding: EdgeInsets.all(20),
+             padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
             child: Row(
             children: <Widget>[
               Expanded(
                 flex: 3,
-                child: Text('邮箱',style: TextStyle(fontSize: 16,color: AppStyle.colorPrimary,fontWeight: FontWeight.w500)),
+                child: Container(
+                  child: Text('邮箱',style: TextStyle(fontSize: 16,color: AppStyle.colorPrimary,fontWeight: FontWeight.w500)),
+                )
               ),
               Expanded(
                 flex: 7,
-                child: TextField(
+                child: Container(
+                  padding: EdgeInsets.only(top: 30),
+                  child: TextField(
+                  maxLines: 3,
+                  cursorColor: AppStyle.colorPrimary,
                   controller: _emailController,
                   enabled: _isEnable,
                 keyboardType: TextInputType.emailAddress,
@@ -484,7 +527,9 @@ getImageYz(int type){
                         color: Color(0xFF979797),
 
                     ),
-                    
+                    focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color:AppStyle.colorLightDarkText,)
+                          ),
                 ),
                 style: TextStyle(
                     color: Color(0xFF979797)
@@ -499,22 +544,29 @@ getImageYz(int type){
                 }
 
             ),
+                )
               )
             ],
           ),
           ),
           //手机号
           Container(
-            padding: EdgeInsets.all(20),
+            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
             child: Row(
             children: <Widget>[
               Expanded(
                 flex: 3,
-                child: Text('手机号',style: TextStyle(fontSize:16,color: AppStyle.colorPrimary,fontWeight: FontWeight.w500)),
+                child: Container(
+                  child: Text('手机号',style: TextStyle(fontSize: 16,color: AppStyle.colorPrimary,fontWeight: FontWeight.w500)),
+                )
               ),
               Expanded(
                 flex: 7,
-                child: TextField(
+                child: Container(
+                  padding: EdgeInsets.only(top: 35),
+                  child: TextField(
+                  maxLines: 3,
+                  cursorColor: AppStyle.colorPrimary,
                   controller: _phoneNumberController,
                   enabled: _isEnable,
                 keyboardType: TextInputType.phone,
@@ -527,7 +579,9 @@ getImageYz(int type){
                     helperStyle: TextStyle(
                         color: Color(0xFF979797)
                     ),
-                    
+                    focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color:AppStyle.colorLightDarkText,)
+                          ),
                 ),
                 style: TextStyle(
                     color: Color(0xFF979797)
@@ -542,17 +596,21 @@ getImageYz(int type){
                 }
 
             ),
+                )
               )
             ],
           ),
           ),
-          Container(
+          _isEnable?Container(
             padding: EdgeInsets.all(20),
             child: Row(
             children: <Widget>[
               Expanded(
                 flex: 3,
-                child: Text('图文验证码',style: TextStyle(fontSize:16,color: AppStyle.colorPrimary,fontWeight: FontWeight.w500)),
+                child: Container(
+                  margin: EdgeInsets.only(top: 10),
+                  child: Text('图文验证码',style: TextStyle(fontSize: 16,color: AppStyle.colorPrimary,fontWeight: FontWeight.w500)),
+                )
               ),
               Expanded(
                 flex: 7,
@@ -562,10 +620,14 @@ getImageYz(int type){
               alignment: Alignment(0 , 0),
               children: <Widget>[
                   TextField(
+                    cursorColor: AppStyle.colorPrimary,
                     enabled: _isEnable,
                       decoration: InputDecoration(
                           labelStyle: TextStyle(
                               color: Color(0xFF979797)
+                          ),
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color:AppStyle.colorLightDarkText,)
                           ),
                       ),
                       onChanged: (value){
@@ -606,14 +668,17 @@ getImageYz(int type){
               )
             ],
           ),
-          ),
-          Container(
+          ):Container(),
+          _isEnable?Container(
             padding: EdgeInsets.all(20),
             child: Row(
             children: <Widget>[
               Expanded(
                 flex: 3,
-                child: Text('短信验证码',style: TextStyle(fontSize:16,color: AppStyle.colorPrimary,fontWeight: FontWeight.w500)),
+                child:Container(
+                  margin: EdgeInsets.only(top: 10),
+                  child: Text('短信验证码',style: TextStyle(fontSize: 16,color: AppStyle.colorPrimary,fontWeight: FontWeight.w500)),
+                )
               ),
               Expanded(
                 flex: 7,
@@ -623,9 +688,13 @@ getImageYz(int type){
               children: <Widget>[
                   Container(
                     child: TextField(
+                      cursorColor: AppStyle.colorPrimary,
                       controller: _yzmController,
                       enabled: _isEnable,
                       decoration: InputDecoration(
+                        focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color:AppStyle.colorLightDarkText,)
+                          ),
                           labelStyle: TextStyle(
                               color: Color(0xFF979797)
                           ),
@@ -654,7 +723,7 @@ getImageYz(int type){
               )
             ],
           ),
-          ),
+          ):Container(),
           //绑定支付宝
           userMap['alipayAccount'] == null? Container(
             padding: EdgeInsets.fromLTRB(16, 40, 16, 0),
@@ -728,22 +797,40 @@ getImageYz(int type){
                     if(_codeEnabel){
                        if(password == ''){
                         _isEnable = false;
-                        showToast(
-                        '请输入新密码',
+                        Fluttertoast.showToast(
+                        msg:'请输入新密码',
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0
                       );
                       // _codeEnabel = false;
                       return;
                       }
                       if(password != ''){
                          if(password.length < 6){
-                           showToast(
-                        '密码不能少于6位.',
+                           Fluttertoast.showToast(
+                        msg:'密码不能少于6位.',
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0
                       );
                           return;
                       }
                       if(!Application.passWord(password)){
-                         showToast(
-                        '密码不能为纯数字或纯字母.',
+                         Fluttertoast.showToast(
+                        msg:'密码不能为纯数字或纯字母.',
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0
                       );
                         return;
                       }
@@ -794,7 +881,7 @@ getImageYz(int type){
                     width: 90,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(37),
-                    border: new Border.all(color: !_codeEnabel?AppStyle.colorPrimary:AppStyle.colorRed, width: 0.5), // 边色与边宽度
+                    border: new Border.all(color: !_codeEnabel?Color(0xFFCBCBCB):AppStyle.colorRed, width: 0.5), // 边色与边宽度
                   ),
                   child: Text(!_codeEnabel?'修改':'完成',style: TextStyle(fontSize: 16,color: !_codeEnabel?AppStyle.colorPrimary:AppStyle.colorRed))
                 )
@@ -814,9 +901,14 @@ getImageYz(int type){
               Expanded(
                 flex: 1,
                 child: TextField(
+                  maxLines: 3,
+                  cursorColor: AppStyle.colorPrimary,
                   enabled: _codeEnabel,
                 keyboardType: TextInputType.text,
                 decoration: InputDecoration(
+                  focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color:AppStyle.colorLightDarkText,)
+                          ),
                     labelText: '请输入新密码',
                     labelStyle: TextStyle(
                         color: AppStyle.colorPrimary,
@@ -1159,19 +1251,27 @@ getImageYz(int type){
           ),
           //地址
           Container(
-            padding: EdgeInsets.all(20),
+            padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
             child: Row(
             children: <Widget>[
               Expanded(
                 flex: 3,
-                child: Text('地址',style: TextStyle(fontSize: 16,color: AppStyle.colorPrimary,fontWeight: FontWeight.w500)),
+                child: Container(
+                  height: 58,
+                  alignment: Alignment.topLeft,
+                  child: Text('地址',style: TextStyle(fontSize: 16,color: AppStyle.colorPrimary,fontWeight: FontWeight.w500)),
+                )
               ),
               Expanded(
                 flex: 7,
                 child: TextField(
-                  maxLines: 2,
+                  cursorColor: AppStyle.colorPrimary,
+                  maxLines: 3,
                 controller: _addressController,
                 decoration: InputDecoration(
+                  focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color:AppStyle.colorLightDarkText,)
+                          ),
                     labelStyle: TextStyle(
                         color: AppStyle.colorLightDarkText,
                         fontSize: 14,
@@ -1204,18 +1304,27 @@ getImageYz(int type){
 
           //收发件人
           Container(
-            padding: EdgeInsets.all(20),
+            padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
             child: Row(
             children: <Widget>[
               Expanded(
                 flex: 3,
-                child: Text('收发件人',style: TextStyle(fontSize: 16,color: AppStyle.colorPrimary,fontWeight: FontWeight.w500)),
+                child: Container(
+                  height: 58,
+                  alignment: Alignment.topLeft,
+                  child: Text('联系人',style: TextStyle(fontSize: 16,color: AppStyle.colorPrimary,fontWeight: FontWeight.w500)),
+                )
               ),
               Expanded(
                 flex: 7,
                 child: TextField(
+                  maxLines: 3,
+                  cursorColor: AppStyle.colorPrimary,
                   controller: _putNameController,
                 decoration: InputDecoration(
+                  focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color:AppStyle.colorLightDarkText,)
+                          ),
                     labelStyle: TextStyle(
                         color: AppStyle.colorLightDarkText,
                         fontSize: 14,
@@ -1247,26 +1356,35 @@ getImageYz(int type){
 
           //手机号
           Container(
-            padding: EdgeInsets.all(20),
+            padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
             child: Row(
             children: <Widget>[
               Expanded(
                 flex: 3,
-                child: Text('手机号',style: TextStyle(fontSize: 16,color: AppStyle.colorPrimary,fontWeight: FontWeight.w500)),
+                child: Container(
+                  height: 58,
+                  alignment: Alignment.topLeft,
+                  child: Text('手机号',style: TextStyle(fontSize: 16,color: AppStyle.colorPrimary,fontWeight: FontWeight.w500)),
+                )
               ),
               Expanded(
                 flex: 7,
                 child: TextField(
+                  maxLines: 3,
+                  cursorColor: AppStyle.colorPrimary,
                 controller: _putNumberController,
                 keyboardType: TextInputType.phone,
                 decoration: InputDecoration(
+                  focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color:AppStyle.colorLightDarkText)
+                          ),
                     labelStyle: TextStyle(
                         color: AppStyle.colorLightDarkText,
                         fontSize: 14,
                         
                     ),
                     helperStyle: TextStyle(
-                        color: Color(0xFF979797)
+                        color:AppStyle.colorLightDarkText,
 
                     ),
                     
@@ -1288,18 +1406,45 @@ getImageYz(int type){
             ],
           ),
           ),
+          SizedBox(height: 60),
           Container(
               child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                MaterialButton(
                    color: AppStyle.colorWhite,
-                    shape:new RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)) ,
+                   highlightColor: AppStyle.colorBackground,
+                    shape: RoundedRectangleBorder(
+                                            side: BorderSide(
+                                              width: d,
+                                              color: e,
+                                              style: BorderStyle.solid,
+                                            ),
+                                            borderRadius: BorderRadius.all(Radius.circular(37)),
+                              ),
+                       
+                        onHighlightChanged: (onPressed){
+                          print(onPressed);
+                          setState(() {
+                            if(onPressed){
+                              d=2;
+                            e = Color(0xFFBCBCBC);
+                            }else{
+                               d = 0.5;
+                               e = Color(0xFFBCBCBC);
+                            }
+                          });
+                        },
                   textColor: AppStyle.colorPrimary,
                   child: new Text(_citySelected ?'删除联系人':'添加为寄件人'),
                   onPressed: () {
                     if(alidate() == false){
-                      showToast('请完善信息');
+                      Fluttertoast.showToast(msg:'请完善信息',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
                         return;
                     }
                     if(_citySelected){
@@ -1379,12 +1524,48 @@ getImageYz(int type){
                 SizedBox(width: 20),
                 MaterialButton(
                   color: AppStyle.colorWhite,
-                    shape:new RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)) ,
+                  highlightColor: AppStyle.colorBackground,
+                     shape: RoundedRectangleBorder(
+                                            side: BorderSide(
+                                              width: a,
+                                              color: c,
+                                              style: BorderStyle.solid,
+                                            ),
+                                            borderRadius: BorderRadius.all(Radius.circular(37)),
+                              ),
+                       
+                        onHighlightChanged: (onPressed){
+                          print(onPressed);
+                          setState(() {
+                            if(onPressed){
+                              a= 2;
+                            c = Color(0xFFBCBCBC);
+                            }else{
+                               a = 0.5;
+                               c = Color(0xFFBCBCBC);
+                            }
+                          });
+                        },
                   textColor: AppStyle.colorPrimary,
-                  child: new Text(_citySelected ?'  编辑完成  ':'添加为收件人'),
+                  child: Container(
+                            alignment: Alignment.center,
+                            child: Text(
+                              _citySelected ?'  编辑完成  ':'添加为收件人',
+                              style: TextStyle(
+                                  color: AppStyle.colorPrimary,
+                                  fontSize: ScreenUtil.getInstance().setSp(26.0)
+                              ),
+                            ),
+
+                          ),// 下部的影子
                   onPressed: () {
                     if(alidate() == false){
-                      showToast('请完善信息');
+                      Fluttertoast.showToast(msg:'请完善信息',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
                         return;
                     }
                     if(_citySelected){
@@ -1459,11 +1640,13 @@ getImageYz(int type){
                       });
                     }
                   },
-                )
+                ),
+
+
               ],
             ),
           ),
-          SizedBox(height: 20,)
+          SizedBox(height: 60,)
           
           
         ],
@@ -1483,7 +1666,6 @@ getImageYz(int type){
         return false;
       }
       return true;
-
     }
 
     String validatephoneNumber (value){

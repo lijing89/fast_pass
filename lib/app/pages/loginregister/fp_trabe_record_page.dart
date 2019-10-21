@@ -48,19 +48,19 @@ class _TrabeRecordPageState extends State<TrabeRecordPage> with AutomaticKeepAli
         body: Column(
         children: <Widget>[
           Container(
-          height: ScreenUtil.getInstance().setSp(145.0),
+          height: 72,
           width: double.infinity,
           color: Colors.white,
           child: TabBar(
               controller: _controller,
               labelColor: Colors.black,
-              indicatorColor: Color(0xff474747),
+              indicatorColor: Colors.red,
               indicatorSize: TabBarIndicatorSize.label,
               tabs: titleName.map((String tab) {
                 return Container(
                   alignment: Alignment.center,
                     child:  Text(tab,
-                style: TextStyle(fontSize: ScreenUtil.getInstance().setSp(28.0)),
+                style: TextStyle(fontSize: 14,fontWeight: FontWeight.w600),
                 maxLines: 1,
                 ),
                 );
@@ -264,7 +264,7 @@ Widget _itemProceed(BuildContext context,Map dic){
                   alignment: Alignment.centerLeft,
                   child: Text(
                   dic['title']??'--',
-                  style: TextStyle(fontSize: ScreenUtil.getInstance().setSp(28),color: AppStyle.colorPrimary),
+                  style: TextStyle(fontSize: 14,color: AppStyle.colorPrimary,fontWeight: FontWeight.w600),
                   textAlign: TextAlign.start,
                 ),
                 )
@@ -273,7 +273,7 @@ Widget _itemProceed(BuildContext context,Map dic){
                 flex: 2,
                 child: Text(
                   dic['orderAmt']??'--',
-                  style: TextStyle(fontSize: ScreenUtil.getInstance().setSp(28),color: Colors.black),
+                  style: TextStyle(fontSize: 14,color: Colors.black,fontWeight: FontWeight.w600),
                 ),
               ),
               Expanded(
@@ -294,7 +294,7 @@ Widget _itemProceed(BuildContext context,Map dic){
           children: <Widget>[
             Container(
                 padding: EdgeInsets.all(ScreenUtil.getInstance().setHeight(10)),
-                margin: EdgeInsets.only(left: ScreenUtil.getInstance().setHeight(20)),
+                margin: EdgeInsets.only(left: ScreenUtil.getInstance().setHeight(20),top: ScreenUtil.getInstance().setHeight(10)),
                 height: ScreenUtil.getInstance().setHeight(50),
                 decoration: BoxDecoration(
                   color: Color(0xFFFFE9EC),

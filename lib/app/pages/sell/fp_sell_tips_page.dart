@@ -158,7 +158,12 @@ class _FPSellTipsPageState extends State<FPSellTipsPage> {
                                     return;
                                   }
                                   if(!_isAgree){
-                                    showToast('请勾选同意');
+                                    Fluttertoast.showToast(msg:'请勾选同意',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
                                     return;
                                   }
                                   if(widget.type == '1'){

@@ -67,6 +67,7 @@ class _informationTapPageState extends State<informationTapPage>
               text: '正在加载...',
             )
           : Scaffold(
+            backgroundColor: Colors.white,
       body: Container(
         child: MediaQuery.removePadding(
           removeTop: true,
@@ -168,7 +169,12 @@ class _informationTapPageState extends State<informationTapPage>
 
       //请求成功 刷新页面
       if(response['list'].length < pageSize){
-          showToast('没有更多数据啦!');
+          Fluttertoast.showToast(msg:'没有更多数据啦!',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
           _easyRefreshKey.currentState.waitState(() {
               setState(() {
                   _loadMore = false;
@@ -207,7 +213,7 @@ class _informationTapPageState extends State<informationTapPage>
         },
         child:  Container(
           padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-          color: Color(0x33333A),
+          color: Color(0xFFF5F5F5),
           child: Column(
             children: <Widget>[
                Container(

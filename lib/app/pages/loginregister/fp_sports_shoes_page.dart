@@ -26,7 +26,7 @@ class _SportsShoesPageState extends State<SportsShoesPage> with SingleTickerProv
   bool setLogin = true;
   bool _isLogin = true;//是否登录
   bool _showBackTop = false;//是否显示到顶部按钮
-  List<Map> _fruits = [{'title':'综合排序','color':Colors.red},{'title':'销量','color':Colors.black},{'title':'浏览量','color':Colors.black},{'title':'最新卖家报价','color':Colors.black},{'title':'最新买家出价','color':Colors.black},{'title':'最新成交','color':Colors.black},{'title':'最低卖家报价','color':Colors.black},{'title':'最高买家出价','color':Colors.black},{'title':'上市时间','color':Colors.black}];
+  List<Map> _fruits = [{'title':'综合排序','color':Colors.green},{'title':'销量','color':Colors.black},{'title':'浏览量','color':Colors.black},{'title':'最新卖家报价','color':Colors.black},{'title':'最新买家出价','color':Colors.black},{'title':'最新成交','color':Colors.black},{'title':'最低卖家报价','color':Colors.black},{'title':'最高买家出价','color':Colors.black},{'title':'上市时间','color':Colors.black}];
   Map NS = {};
   bool openSel = false;
   bool sift = false;
@@ -309,7 +309,7 @@ Color color = a['color'];
 return GestureDetector(
   onTap: (){
     NS['color'] = Colors.black;
-    a['color'] = Colors.red;
+    a['color'] = Colors.green;
     setState(() {
       NS = a;
       openSel = false;
@@ -406,7 +406,12 @@ Future pullRefresh() async {
         }
       //请求成功 刷新页面
       if(response['list'].length < pageSize){
-          showToast('没有更多数据啦!');
+          Fluttertoast.showToast(msg:'没有更多数据啦!',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
           _easyRefreshKey.currentState.waitState(() {
               setState(() {
                   _loadMore = false;

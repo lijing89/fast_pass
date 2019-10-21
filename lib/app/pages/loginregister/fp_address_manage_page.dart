@@ -73,7 +73,13 @@ _show(context) async{
     ApiConfig().getAccount().then((onValue){
        if(onValue == null){return;}
        if(onValue['rspCode'] != '0000'){
-          showToast(onValue['rspDesc'],
+          Fluttertoast.showToast(msg:onValue['rspDesc'],
+          toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0
           );
           return;
        }
@@ -392,7 +398,12 @@ leaveLogIn(BuildContext context){
                   child: new Text('删除联系人'),
                   onPressed: () {
                     if(alidate() == false){
-                      showToast('请完善信息');
+                      Fluttertoast.showToast(msg:'请完善信息',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
                         return;
                     }
                     if(_citySelected){
@@ -477,7 +488,12 @@ leaveLogIn(BuildContext context){
                   child: new Text(_citySelected ?'  编辑完成  ':'   添加地址   '),
                   onPressed: () {
                     if(alidate() == false){
-                      showToast('请完善信息');
+                      Fluttertoast.showToast(msg:'请完善信息',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
                         return;
                     }
                     if(_citySelected){
@@ -540,7 +556,12 @@ leaveLogIn(BuildContext context){
                            _putNumberController = TextEditingController(text: '');
                            _putNameController = TextEditingController(text: '');
                            _addressController = TextEditingController(text: '');
-                          showToast('添加成功');
+                          Fluttertoast.showToast(msg:'添加成功',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
                       });
                     }
                   },

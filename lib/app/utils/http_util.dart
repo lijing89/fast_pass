@@ -3,7 +3,9 @@ import 'dart:collection';
 import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
+import 'package:fast_pass/app/resources/app_style.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:oktoast/oktoast.dart';
@@ -355,7 +357,12 @@ class HttpUtil{
     }
     /// 弹出消息
     void toast(String msg) {
-        showToast(msg);
+        Fluttertoast.showToast(msg:msg,toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
     }
 
     /// 错误信息

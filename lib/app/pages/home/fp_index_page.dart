@@ -126,7 +126,12 @@ class _FPIndexPageState extends State<FPIndexPage> {
                         return;
                       }
                       if (response['rspCode'] != '0000') {
-                        showToast(response['rspDesc']
+                        Fluttertoast.showToast(msg:response['rspDesc'],toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0
                         );
                         return;
                       }
@@ -147,7 +152,12 @@ class _FPIndexPageState extends State<FPIndexPage> {
                     return;
                   }
                   if (response['rspCode'] != '0000') {
-                    showToast(response['rspDesc']);
+                    Fluttertoast.showToast(msg:response['rspDesc'],toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
                     return;
                   }
                   String type = response['status'];
@@ -179,7 +189,12 @@ class _FPIndexPageState extends State<FPIndexPage> {
                     return;
                   }
                   if (response['rspCode'] != '0000') {
-                    showToast(response['rspDesc']
+                    Fluttertoast.showToast(msg:response['rspDesc'],toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0
                     );
                     return;
                   }
@@ -200,7 +215,12 @@ class _FPIndexPageState extends State<FPIndexPage> {
                     return;
                   }
                   if (response['rspCode'] != '0000') {
-                    showToast(response['rspDesc']);
+                    Fluttertoast.showToast(msg:response['rspDesc'],toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
                     return;
                   }
                   String type = response['status'];
@@ -1393,7 +1413,7 @@ openDrow(){
         Container(
           width: double.infinity,
           height: ScreenUtil.getInstance().setWidth(930),
-          child:Image.network(imagesList[0]['imgUrl'],fit: BoxFit.cover,),
+          child:Image(image: AssetImage(AssetUtil.image('bj@3x.png')),fit: BoxFit.fitWidth,),
         ),
         barView(context,AppStyle.colorPrimary,_isLogin),
         Container(

@@ -116,7 +116,12 @@ AppBar myappbar(BuildContext context, bool ispop, bool isLogin,
                         //         fontSize: 16.0);
                         //     return;
                         //   }
-                        showToast( '登录已注销');
+                        Fluttertoast.showToast(msg:'登录已注销',toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIos: 2,
+                        backgroundColor: AppStyle.colorGreyDark,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
                         UserInfoCache().setUserInfo(userInfo: {});
                         UserInfoCache().saveInfo(
                             key: UserInfoCache.loginStatus, value: '0');
