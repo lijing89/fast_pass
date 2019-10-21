@@ -1,0 +1,30 @@
+buildscript {
+    repositories {
+        google()
+        jcenter()
+//        maven {
+//            url "http://mvn.mob.com/android"
+//        }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.2'
+//        classpath 'com.mob.sdk:MobSDK:+'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+    project.evaluationDependsOn(':app')
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

@@ -1,0 +1,1 @@
+../../../../.symlinks/plugins/janalytics/ios/Classes/JanalyticsPlugin.h

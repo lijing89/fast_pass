@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: cn.jiguang.sdk:janalytics:1.2.2@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/cd67781f5bc1813738c435017f98c4dc/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/cd67781f5bc1813738c435017f98c4dc/jars/libs/janalytics-android-1.2.2.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/cd67781f5bc1813738c435017f98c4dc/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.jiguang.sdk/janalytics/1.2.2/7f8289aabd273691941aeb85a5daea0e7109efc3/janalytics-1.2.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

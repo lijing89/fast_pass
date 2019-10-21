@@ -1,0 +1,30 @@
+{
+  "name": "janalytics",
+  "version": "0.0.1",
+  "summary": "A new Flutter plugin.",
+  "description": "A new Flutter plugin.",
+  "homepage": "http://example.com",
+  "license": {
+    "file": "../LICENSE"
+  },
+  "authors": {
+    "skk": "shikunkun.cool@163.com"
+  },
+  "source": {
+    "path": "."
+  },
+  "source_files": "Classes/**/*",
+  "public_header_files": "Classes/**/*.h",
+  "dependencies": {
+    "Flutter": [
+
+    ],
+    "JAnalytics": [
+
+    ]
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "static_framework": true
+}

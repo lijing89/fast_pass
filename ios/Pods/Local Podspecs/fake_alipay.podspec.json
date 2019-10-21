@@ -1,0 +1,30 @@
+{
+  "name": "fake_alipay",
+  "version": "0.0.1",
+  "summary": "A new Flutter plugin.",
+  "description": "A new Flutter plugin.",
+  "homepage": "http://example.com",
+  "license": {
+    "file": "../LICENSE"
+  },
+  "authors": {
+    "Your Company": "email@example.com"
+  },
+  "source": {
+    "path": "."
+  },
+  "source_files": "Classes/**/*",
+  "public_header_files": "Classes/**/*.h",
+  "dependencies": {
+    "Flutter": [
+
+    ],
+    "AlipaySDK-iOS": [
+      "~> 15.5.5"
+    ]
+  },
+  "static_framework": true,
+  "platforms": {
+    "ios": "8.0"
+  }
+}
