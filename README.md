@@ -1,3 +1,3 @@
 # fast_pass
 fast_pass
-快传项目仓库
+快传商城项目仓库
